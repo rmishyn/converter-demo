@@ -37,7 +37,7 @@ private extension SceneDelegateService {
     
     func setupSceneCoordinator() {
         let navigationController = UINavigationController()
-        navigationController.setNavigationBarHidden(true, animated: false)
+        navigationController.setNavigationBarHidden(false, animated: false)
         window.rootViewController = navigationController
         
         let coordinatorConfiguration = CoordinatorConfiguration<SceneCoordinatorOutput>(navigationController: navigationController, output: self)
