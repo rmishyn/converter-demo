@@ -14,6 +14,7 @@ extension UIView: Stylable {
     enum UIStyle {
         case transparent
         case screenView
+        case underline
     }
     
     typealias Style = UIView.UIStyle
@@ -25,7 +26,8 @@ extension UIView: Stylable {
             self.backgroundColor = .clear
         case .screenView:
             self.backgroundColor = .screenBackground
-            break
+        case .underline:
+            self.backgroundColor = .label
         }
         return self
     }

@@ -22,6 +22,7 @@ extension UITextField {
         switch style {
         case .numeric:
             self.keyboardType = .decimalPad
+            self.textColor = .label
         }
         return self
     }

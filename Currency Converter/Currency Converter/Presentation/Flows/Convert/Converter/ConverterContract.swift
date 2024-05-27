@@ -14,8 +14,8 @@ protocol ConverterViewModelInput: AnyObject {
     func viewWillAppear()
     func viewWillDisappear()
     func didChangeOriginalValue(to value: Double)
-    func shouldChangeFromCurrency()
-    func shouldChangeToCurrency()
+    func didChangeFromCurrency(to currency: Currency)
+    func didChangeToCurrency(to currency: Currency)
 }
 
 protocol ConverterViewModelOutput: AnyObject {
@@ -29,6 +29,8 @@ protocol ConverterViewModelOutput: AnyObject {
     var toCurrency: Observable<Currency?> {get}
     var convertedValue: Observable<String?> {get}
     var error: Observable<Error?> {get}
+    var supportedCurrencies: Observable<[Currency]> {get}
+    var isConversionActive: Observable<Bool> {get}
 }
 
 protocol ConverterOutput: AnyObject {

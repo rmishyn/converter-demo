@@ -23,7 +23,7 @@ class NetworkingServiceImpl: NetworkingService {
         
         if let response = responseData.response {
             switch responseData.result {
-            case .success(let data): // status code is auto-validated in 'performRequest' by using 'validate()'
+            case .success/*(let data)*/: // status code is auto-validated in 'performRequest' by using 'validate()'
                 guard let data = responseData.data as? T else { return result = .failure(CCError.invalidResponseDataType) }
                 if T.self == Data.self {
                     print("response: \(String(describing: String(data: data as! Data, encoding: .utf8)))")

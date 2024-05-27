@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ConversionRepositoryImpl: ConversionRepository {
+final class ConversionRepositoryImpl: ConversionRepository {
     
     private let financeAPIService: FinanceAPIService
     

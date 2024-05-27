@@ -64,6 +64,8 @@
 		448328742C048DC200FD7ADC /* NetworkingResponseProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448328732C048DC200FD7ADC /* NetworkingResponseProcessing.swift */; };
 		448328762C04915500FD7ADC /* NetworkingServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448328752C04915500FD7ADC /* NetworkingServiceHelper.swift */; };
 		448328782C04930C00FD7ADC /* NetworkingRequesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448328772C04930C00FD7ADC /* NetworkingRequesting.swift */; };
+		4483287A2C04CE1200FD7ADC /* GetSupportedCurrencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448328792C04CE1200FD7ADC /* GetSupportedCurrencies.swift */; };
+		4483287C2C04D01500FD7ADC /* CurrenciesRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4483287B2C04D01500FD7ADC /* CurrenciesRepositoryImpl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +144,8 @@
 		448328732C048DC200FD7ADC /* NetworkingResponseProcessing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingResponseProcessing.swift; sourceTree = "<group>"; };
 		448328752C04915500FD7ADC /* NetworkingServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingServiceHelper.swift; sourceTree = "<group>"; };
 		448328772C04930C00FD7ADC /* NetworkingRequesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingRequesting.swift; sourceTree = "<group>"; };
+		448328792C04CE1200FD7ADC /* GetSupportedCurrencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSupportedCurrencies.swift; sourceTree = "<group>"; };
+		4483287B2C04D01500FD7ADC /* CurrenciesRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesRepositoryImpl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -425,6 +429,7 @@
 			isa = PBXGroup;
 			children = (
 				4483284E2C03318D00FD7ADC /* GetConvertedValue.swift */,
+				448328792C04CE1200FD7ADC /* GetSupportedCurrencies.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -495,6 +500,7 @@
 		448328602C03D5BB00FD7ADC /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				4483287B2C04D01500FD7ADC /* CurrenciesRepositoryImpl.swift */,
 				448328612C03D5EC00FD7ADC /* ConversionRepositoryImpl.swift */,
 			);
 			path = Repository;
@@ -643,6 +649,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4424F0A82C00DB6F001A5BDD /* Observable.swift in Sources */,
+				4483287A2C04CE1200FD7ADC /* GetSupportedCurrencies.swift in Sources */,
 				448328482C032F1300FD7ADC /* CurrencyAmount.swift in Sources */,
 				4424F0942BFFD251001A5BDD /* AppConfiguration.swift in Sources */,
 				4424F0712BFF8784001A5BDD /* ConverterContract.swift in Sources */,
@@ -689,6 +696,7 @@
 				4424F0862BFF8B3E001A5BDD /* AppConfigurationImpl.swift in Sources */,
 				4424F09C2BFFEF75001A5BDD /* AbstractCoordinator.swift in Sources */,
 				4424F08B2BFFCA08001A5BDD /* SceneDelegateServiceContract.swift in Sources */,
+				4483287C2C04D01500FD7ADC /* CurrenciesRepositoryImpl.swift in Sources */,
 				4483285C2C035F0600FD7ADC /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

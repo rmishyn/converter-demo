@@ -30,7 +30,7 @@ extension URLRequest {
             }
         }
         
-        if var data = httpBody {
+        if let data = httpBody {
             // TODO: Hide all passwords from logs if used
             /*
             if var parameters = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] {

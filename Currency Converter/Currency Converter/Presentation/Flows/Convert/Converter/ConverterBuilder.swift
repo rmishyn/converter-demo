@@ -9,6 +9,7 @@ import Foundation
 
 struct ConverterConfiguration {
     let getConvertedValueUseCase: GetConvertedValue
+    let getSupportedCurrenciesUseCase: GetSupportedCurrencies
 }
 
 struct ConverterBuilder {

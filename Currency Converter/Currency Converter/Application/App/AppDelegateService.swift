@@ -51,6 +51,12 @@ private extension AppDelegateService {
         diContainer.register(GetConvertedValue.self) { resolver in
             GetConvertedValueUseCase(repository: resolver.resolve(ConversionRepository.self)!)
         }
+        diContainer.register(CurrenciesRepository.self) { resolver in
+            CurrenciesRepositoryImpl(appConfiguration: resolver.resolve(AppConfiguration.self)!)
+        }
+        diContainer.register(GetSupportedCurrencies.self) { resolver in
+            GetSupportedCurrenciesUseCase(repository: resolver.resolve(CurrenciesRepository.self)!)
+        }
         self.diContainer = diContainer
     }
 }
