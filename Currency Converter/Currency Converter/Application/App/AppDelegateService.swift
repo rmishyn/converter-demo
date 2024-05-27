@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 import Swinject
 
 class AppDelegateService: AppDelegateServiceProtocol {
@@ -33,7 +34,30 @@ private extension AppDelegateService {
     
     func setupDependencies() {
         let diContainer = Container()
-        diContainer.register(AppConfigurationProtocol.self) { _ in AppConfiguration() }
+        diContainer.register(AppConfiguration.self) { _ in
+            AppConfigurationImpl()
+        }
+        diContainer.register(NetworkingService.self) { _ in
+            NetworkingServiceImpl()
+        }
+        diContainer.register(FinanceAPI.self) { resolver in
+            FinanceAPIImpl(appConfiguration: resolver.resolve(AppConfiguration.self)!)
+        }
+        diContainer.register(FinanceAPIService.self) { resolver in
+            FinanceAPIServiceImpl(financeAPI: resolver.resolve(FinanceAPI.self)!, networkingService: resolver.resolve(NetworkingService.self)!)
+        }
+        diContainer.register(ConversionRepository.self) { resolver in
+            ConversionRepositoryImpl(financeAPIService: resolver.resolve(FinanceAPIService.self)!)
+        }
+        diContainer.register(GetConvertedValue.self) { resolver in
+            GetConvertedValueUseCase(repository: resolver.resolve(ConversionRepository.self)!)
+        }
+        diContainer.register(CurrenciesRepository.self) { resolver in
+            CurrenciesRepositoryImpl(appConfiguration: resolver.resolve(AppConfiguration.self)!)
+        }
+        diContainer.register(GetSupportedCurrencies.self) { resolver in
+            GetSupportedCurrenciesUseCase(repository: resolver.resolve(CurrenciesRepository.self)!)
+        }
         self.diContainer = diContainer
     }
 }

@@ -8,7 +8,8 @@
 import Foundation
 
 struct ConverterConfiguration {
-    
+    let getConvertedValueUseCase: GetConvertedValue
+    let getSupportedCurrenciesUseCase: GetSupportedCurrencies
 }
 
 struct ConverterBuilder {
@@ -16,15 +17,11 @@ struct ConverterBuilder {
     typealias BuilderConfiguration = ConverterConfiguration
     typealias BuilderOutput = ConverterOutput
     typealias BuilderViewController = ConverterViewController
-//    typealias BuilderPresenter = AccountPresenter
-//    
-    func build(output: BuilderOutput, configuration: BuilderConfiguration) -> BuilderViewController {
-        
-        ConverterViewController()
-        
-//        let viewController = BuilderViewController.controllerFromStoryboard(storyboard)
-//        let presenter = BuilderPresenter(view: viewController, output: output, configuration: configuration)
-//        viewController.presenter = presenter
-//        return viewController
+    typealias BuilderViewModel = ConverterViewModel
+    
+    func build(output: BuilderOutput, configuration: BuilderConfiguration) async -> BuilderViewController {
+        let viewModel = BuilderViewModel(output: output, configuration: configuration)
+        let viewController = await BuilderViewController(viewModel: viewModel)
+        return viewController
     }
 }

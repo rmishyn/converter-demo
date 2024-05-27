@@ -51,9 +51,12 @@ class ConvertCoordinator: AbstractCoordinator, Coordinator, ChildCoordinatorFini
 private extension ConvertCoordinator {
     
     func setConverter() {
-        let configuration = ConverterConfiguration()
-        let viewController = ConverterBuilder().build(output: self, configuration: configuration)
-        setToNavigationController(viewController: viewController, animated: false, completion: nil)
+        Task {
+            let configuration = ConverterConfiguration(getConvertedValueUseCase: dependenciesResolver.resolve(GetConvertedValue.self)!,
+                                                       getSupportedCurrenciesUseCase: dependenciesResolver.resolve(GetSupportedCurrencies.self)!)
+            let viewController = await ConverterBuilder().build(output: self, configuration: configuration)
+            setToNavigationController(viewController: viewController, animated: false, completion: nil)
+        }
     }
 }
 
