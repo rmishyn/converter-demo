@@ -7,6 +7,8 @@
 
 import Foundation
 
-final class AppConfiguration: AppConfigurationProtocol {
-    let apiBaseURL = "http://api.evp.lt"
+protocol AppConfiguration {
+    var apiBaseURL: URL {get}
+    var defaultAcceptType: HTTPContentType {get}
+    var defaultContentType: HTTPContentType {get}
 }

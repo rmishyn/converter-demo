@@ -21,11 +21,11 @@ protocol ConverterViewModelOutput: AnyObject {
     var errorTitle: String { get }
     var fromCurrencyTitle: String { get }
     var toCurrencyTitle: String { get }
-    var amountToExchangePlaceholder: String { get }
+    var valueToConvertPlaceholder: String { get }
     var notes: String { get }
-    var fromCurrency: Observable<String?> {get}
-    var toCurrency: Observable<String?> {get}
-    var convertedValue: Observable<Double> {get}
+    var fromCurrency: Observable<Currency?> {get}
+    var toCurrency: Observable<Currency?> {get}
+    var convertedValue: Observable<String?> {get}
     var error: Observable<Error?> {get}
 }
 

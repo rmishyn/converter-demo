@@ -21,12 +21,12 @@
 		4424F0762BFF897D001A5BDD /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 4424F0752BFF897D001A5BDD /* Swinject */; };
 		4424F0792BFF8991001A5BDD /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4424F0782BFF8991001A5BDD /* Alamofire */; };
 		4424F07C2BFF89A0001A5BDD /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4424F07B2BFF89A0001A5BDD /* SnapKit */; };
-		4424F0862BFF8B3E001A5BDD /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4424F0852BFF8B3E001A5BDD /* AppConfiguration.swift */; };
+		4424F0862BFF8B3E001A5BDD /* AppConfigurationImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4424F0852BFF8B3E001A5BDD /* AppConfigurationImpl.swift */; };
 		4424F0892BFFC9FA001A5BDD /* AppDelegateServiceContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4424F0882BFFC9FA001A5BDD /* AppDelegateServiceContract.swift */; };
 		4424F08B2BFFCA08001A5BDD /* SceneDelegateServiceContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4424F08A2BFFCA08001A5BDD /* SceneDelegateServiceContract.swift */; };
 		4424F08D2BFFCA1F001A5BDD /* AppDelegateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4424F08C2BFFCA1F001A5BDD /* AppDelegateService.swift */; };
 		4424F08F2BFFCA2A001A5BDD /* SceneDelegateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4424F08E2BFFCA2A001A5BDD /* SceneDelegateService.swift */; };
-		4424F0942BFFD251001A5BDD /* AppConfigurationContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4424F0932BFFD251001A5BDD /* AppConfigurationContract.swift */; };
+		4424F0942BFFD251001A5BDD /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4424F0932BFFD251001A5BDD /* AppConfiguration.swift */; };
 		4424F09A2BFFEF62001A5BDD /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4424F0992BFFEF62001A5BDD /* Coordinator.swift */; };
 		4424F09C2BFFEF75001A5BDD /* AbstractCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4424F09B2BFFEF75001A5BDD /* AbstractCoordinator.swift */; };
 		4424F09F2C00017D001A5BDD /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4424F09E2C00017D001A5BDD /* Weak.swift */; };
@@ -42,6 +42,28 @@
 		4483283D2C023E9100FD7ADC /* UIButton+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4483283C2C023E9000FD7ADC /* UIButton+Styling.swift */; };
 		448328402C02680100FD7ADC /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 4483283F2C02680100FD7ADC /* Localizable.xcstrings */; };
 		448328442C0292A700FD7ADC /* UITextField+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448328432C0292A700FD7ADC /* UITextField+Styling.swift */; };
+		448328482C032F1300FD7ADC /* CurrencyAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448328472C032F1300FD7ADC /* CurrencyAmount.swift */; };
+		4483284B2C0330B500FD7ADC /* CurrenciesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4483284A2C0330B500FD7ADC /* CurrenciesRepository.swift */; };
+		4483284D2C03310400FD7ADC /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4483284C2C03310400FD7ADC /* Currency.swift */; };
+		4483284F2C03318D00FD7ADC /* GetConvertedValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4483284E2C03318D00FD7ADC /* GetConvertedValue.swift */; };
+		448328532C03417700FD7ADC /* CurrencyAmountDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448328522C03417700FD7ADC /* CurrencyAmountDTO.swift */; };
+		448328552C03437400FD7ADC /* ConversionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448328542C03437400FD7ADC /* ConversionRepository.swift */; };
+		448328582C035E7E00FD7ADC /* HTTPHeaderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448328572C035E7E00FD7ADC /* HTTPHeaderField.swift */; };
+		4483285A2C035EB300FD7ADC /* HTTPContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448328592C035EB300FD7ADC /* HTTPContentType.swift */; };
+		4483285C2C035F0600FD7ADC /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4483285B2C035F0600FD7ADC /* API.swift */; };
+		4483285F2C035FE500FD7ADC /* FinanceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4483285E2C035FE500FD7ADC /* FinanceAPI.swift */; };
+		448328622C03D5EC00FD7ADC /* ConversionRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448328612C03D5EC00FD7ADC /* ConversionRepositoryImpl.swift */; };
+		448328642C03FE9A00FD7ADC /* FinanceAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448328632C03FE9A00FD7ADC /* FinanceAPIService.swift */; };
+		448328662C03FEA700FD7ADC /* FinanceAPIServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448328652C03FEA700FD7ADC /* FinanceAPIServiceImpl.swift */; };
+		448328682C046B0500FD7ADC /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448328672C046B0500FD7ADC /* NetworkingService.swift */; };
+		4483286A2C046C2A00FD7ADC /* NetworkingServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448328692C046C2A00FD7ADC /* NetworkingServiceImpl.swift */; };
+		4483286C2C04714C00FD7ADC /* URLRequest+curl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4483286B2C04714C00FD7ADC /* URLRequest+curl.swift */; };
+		4483286E2C047E6C00FD7ADC /* HTTPStatusCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4483286D2C047E6C00FD7ADC /* HTTPStatusCodes.swift */; };
+		448328702C04820600FD7ADC /* NSError+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4483286F2C04820600FD7ADC /* NSError+Extension.swift */; };
+		448328722C04861F00FD7ADC /* CCError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448328712C04861F00FD7ADC /* CCError.swift */; };
+		448328742C048DC200FD7ADC /* NetworkingResponseProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448328732C048DC200FD7ADC /* NetworkingResponseProcessing.swift */; };
+		448328762C04915500FD7ADC /* NetworkingServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448328752C04915500FD7ADC /* NetworkingServiceHelper.swift */; };
+		448328782C04930C00FD7ADC /* NetworkingRequesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448328772C04930C00FD7ADC /* NetworkingRequesting.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,12 +99,12 @@
 		4424F06B2BFF8784001A5BDD /* ConverterContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConverterContract.swift; sourceTree = "<group>"; };
 		4424F06C2BFF8784001A5BDD /* ConverterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConverterViewController.swift; sourceTree = "<group>"; };
 		4424F06D2BFF8784001A5BDD /* ConverterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConverterViewModel.swift; sourceTree = "<group>"; };
-		4424F0852BFF8B3E001A5BDD /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		4424F0852BFF8B3E001A5BDD /* AppConfigurationImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationImpl.swift; sourceTree = "<group>"; };
 		4424F0882BFFC9FA001A5BDD /* AppDelegateServiceContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateServiceContract.swift; sourceTree = "<group>"; };
 		4424F08A2BFFCA08001A5BDD /* SceneDelegateServiceContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegateServiceContract.swift; sourceTree = "<group>"; };
 		4424F08C2BFFCA1F001A5BDD /* AppDelegateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateService.swift; sourceTree = "<group>"; };
 		4424F08E2BFFCA2A001A5BDD /* SceneDelegateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegateService.swift; sourceTree = "<group>"; };
-		4424F0932BFFD251001A5BDD /* AppConfigurationContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationContract.swift; sourceTree = "<group>"; };
+		4424F0932BFFD251001A5BDD /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		4424F0992BFFEF62001A5BDD /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		4424F09B2BFFEF75001A5BDD /* AbstractCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractCoordinator.swift; sourceTree = "<group>"; };
 		4424F09E2C00017D001A5BDD /* Weak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weak.swift; sourceTree = "<group>"; };
@@ -98,6 +120,28 @@
 		4483283C2C023E9000FD7ADC /* UIButton+Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Styling.swift"; sourceTree = "<group>"; };
 		4483283F2C02680100FD7ADC /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		448328432C0292A700FD7ADC /* UITextField+Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Styling.swift"; sourceTree = "<group>"; };
+		448328472C032F1300FD7ADC /* CurrencyAmount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyAmount.swift; sourceTree = "<group>"; };
+		4483284A2C0330B500FD7ADC /* CurrenciesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesRepository.swift; sourceTree = "<group>"; };
+		4483284C2C03310400FD7ADC /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		4483284E2C03318D00FD7ADC /* GetConvertedValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetConvertedValue.swift; sourceTree = "<group>"; };
+		448328522C03417700FD7ADC /* CurrencyAmountDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyAmountDTO.swift; sourceTree = "<group>"; };
+		448328542C03437400FD7ADC /* ConversionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionRepository.swift; sourceTree = "<group>"; };
+		448328572C035E7E00FD7ADC /* HTTPHeaderField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeaderField.swift; sourceTree = "<group>"; };
+		448328592C035EB300FD7ADC /* HTTPContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPContentType.swift; sourceTree = "<group>"; };
+		4483285B2C035F0600FD7ADC /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		4483285E2C035FE500FD7ADC /* FinanceAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceAPI.swift; sourceTree = "<group>"; };
+		448328612C03D5EC00FD7ADC /* ConversionRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionRepositoryImpl.swift; sourceTree = "<group>"; };
+		448328632C03FE9A00FD7ADC /* FinanceAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceAPIService.swift; sourceTree = "<group>"; };
+		448328652C03FEA700FD7ADC /* FinanceAPIServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceAPIServiceImpl.swift; sourceTree = "<group>"; };
+		448328672C046B0500FD7ADC /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
+		448328692C046C2A00FD7ADC /* NetworkingServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingServiceImpl.swift; sourceTree = "<group>"; };
+		4483286B2C04714C00FD7ADC /* URLRequest+curl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+curl.swift"; sourceTree = "<group>"; };
+		4483286D2C047E6C00FD7ADC /* HTTPStatusCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatusCodes.swift; sourceTree = "<group>"; };
+		4483286F2C04820600FD7ADC /* NSError+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSError+Extension.swift"; sourceTree = "<group>"; };
+		448328712C04861F00FD7ADC /* CCError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCError.swift; sourceTree = "<group>"; };
+		448328732C048DC200FD7ADC /* NetworkingResponseProcessing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingResponseProcessing.swift; sourceTree = "<group>"; };
+		448328752C04915500FD7ADC /* NetworkingServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingServiceHelper.swift; sourceTree = "<group>"; };
+		448328772C04930C00FD7ADC /* NetworkingRequesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingRequesting.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +247,8 @@
 		4424F07E2BFF8A68001A5BDD /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				448328602C03D5BB00FD7ADC /* Repository */,
+				448328512C03415C00FD7ADC /* Networking */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -210,6 +256,9 @@
 		4424F07F2BFF8A73001A5BDD /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				448328462C032EF900FD7ADC /* Models */,
+				448328452C032ED900FD7ADC /* UseCases */,
+				448328492C03309900FD7ADC /* Repositories */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -240,6 +289,7 @@
 		4424F0822BFF8AE6001A5BDD /* Enumerations */ = {
 			isa = PBXGroup;
 			children = (
+				448328712C04861F00FD7ADC /* CCError.swift */,
 			);
 			path = Enumerations;
 			sourceTree = "<group>";
@@ -249,6 +299,7 @@
 			children = (
 				4424F0A92C00E5C1001A5BDD /* String+Extension.swift */,
 				448328312C02246B00FD7ADC /* UIStackView+Extension.swift */,
+				4483286F2C04820600FD7ADC /* NSError+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -292,8 +343,8 @@
 		4424F0922BFFD238001A5BDD /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
-				4424F0932BFFD251001A5BDD /* AppConfigurationContract.swift */,
-				4424F0852BFF8B3E001A5BDD /* AppConfiguration.swift */,
+				4424F0932BFFD251001A5BDD /* AppConfiguration.swift */,
+				4424F0852BFF8B3E001A5BDD /* AppConfigurationImpl.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -368,6 +419,85 @@
 				4483283F2C02680100FD7ADC /* Localizable.xcstrings */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		448328452C032ED900FD7ADC /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				4483284E2C03318D00FD7ADC /* GetConvertedValue.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		448328462C032EF900FD7ADC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4483284C2C03310400FD7ADC /* Currency.swift */,
+				448328472C032F1300FD7ADC /* CurrencyAmount.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		448328492C03309900FD7ADC /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				4483284A2C0330B500FD7ADC /* CurrenciesRepository.swift */,
+				448328542C03437400FD7ADC /* ConversionRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		448328502C0340E500FD7ADC /* DataTransferObjects */ = {
+			isa = PBXGroup;
+			children = (
+				448328522C03417700FD7ADC /* CurrencyAmountDTO.swift */,
+			);
+			path = DataTransferObjects;
+			sourceTree = "<group>";
+		};
+		448328512C03415C00FD7ADC /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				4483285D2C035FD000FD7ADC /* API */,
+				448328562C035E6D00FD7ADC /* Core */,
+				448328502C0340E500FD7ADC /* DataTransferObjects */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		448328562C035E6D00FD7ADC /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				4483286B2C04714C00FD7ADC /* URLRequest+curl.swift */,
+				448328572C035E7E00FD7ADC /* HTTPHeaderField.swift */,
+				448328592C035EB300FD7ADC /* HTTPContentType.swift */,
+				4483286D2C047E6C00FD7ADC /* HTTPStatusCodes.swift */,
+				448328672C046B0500FD7ADC /* NetworkingService.swift */,
+				448328692C046C2A00FD7ADC /* NetworkingServiceImpl.swift */,
+				448328772C04930C00FD7ADC /* NetworkingRequesting.swift */,
+				448328732C048DC200FD7ADC /* NetworkingResponseProcessing.swift */,
+				448328752C04915500FD7ADC /* NetworkingServiceHelper.swift */,
+				4483285B2C035F0600FD7ADC /* API.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		4483285D2C035FD000FD7ADC /* API */ = {
+			isa = PBXGroup;
+			children = (
+				4483285E2C035FE500FD7ADC /* FinanceAPI.swift */,
+				448328632C03FE9A00FD7ADC /* FinanceAPIService.swift */,
+				448328652C03FEA700FD7ADC /* FinanceAPIServiceImpl.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		448328602C03D5BB00FD7ADC /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				448328612C03D5EC00FD7ADC /* ConversionRepositoryImpl.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -513,31 +643,53 @@
 			buildActionMask = 2147483647;
 			files = (
 				4424F0A82C00DB6F001A5BDD /* Observable.swift in Sources */,
-				4424F0942BFFD251001A5BDD /* AppConfigurationContract.swift in Sources */,
+				448328482C032F1300FD7ADC /* CurrencyAmount.swift in Sources */,
+				4424F0942BFFD251001A5BDD /* AppConfiguration.swift in Sources */,
 				4424F0712BFF8784001A5BDD /* ConverterContract.swift in Sources */,
+				448328782C04930C00FD7ADC /* NetworkingRequesting.swift in Sources */,
 				4424F0A42C0073D7001A5BDD /* SceneCoordinator.swift in Sources */,
+				448328532C03417700FD7ADC /* CurrencyAmountDTO.swift in Sources */,
+				4483284D2C03310400FD7ADC /* Currency.swift in Sources */,
+				448328722C04861F00FD7ADC /* CCError.swift in Sources */,
+				4483286C2C04714C00FD7ADC /* URLRequest+curl.swift in Sources */,
+				4483284F2C03318D00FD7ADC /* GetConvertedValue.swift in Sources */,
 				4424F09F2C00017D001A5BDD /* Weak.swift in Sources */,
+				448328742C048DC200FD7ADC /* NetworkingResponseProcessing.swift in Sources */,
 				448328352C0239B400FD7ADC /* UIView+Styling.swift in Sources */,
 				4424F09A2BFFEF62001A5BDD /* Coordinator.swift in Sources */,
 				4424F0702BFF8784001A5BDD /* ConverterBuilder.swift in Sources */,
 				4424F03B2BFF8742001A5BDD /* AppDelegate.swift in Sources */,
+				448328642C03FE9A00FD7ADC /* FinanceAPIService.swift in Sources */,
+				4483286A2C046C2A00FD7ADC /* NetworkingServiceImpl.swift in Sources */,
+				448328582C035E7E00FD7ADC /* HTTPHeaderField.swift in Sources */,
+				448328702C04820600FD7ADC /* NSError+Extension.swift in Sources */,
 				448328322C02246B00FD7ADC /* UIStackView+Extension.swift in Sources */,
 				4424F0AA2C00E5C1001A5BDD /* String+Extension.swift in Sources */,
+				4483284B2C0330B500FD7ADC /* CurrenciesRepository.swift in Sources */,
+				448328762C04915500FD7ADC /* NetworkingServiceHelper.swift in Sources */,
 				4424F0892BFFC9FA001A5BDD /* AppDelegateServiceContract.swift in Sources */,
 				4424F0A62C00ADF8001A5BDD /* ConvertCoordinator.swift in Sources */,
 				448328372C023A4400FD7ADC /* Stylable.swift in Sources */,
 				4424F08F2BFFCA2A001A5BDD /* SceneDelegateService.swift in Sources */,
 				4424F0732BFF8784001A5BDD /* ConverterViewModel.swift in Sources */,
 				4483283D2C023E9100FD7ADC /* UIButton+Styling.swift in Sources */,
+				448328552C03437400FD7ADC /* ConversionRepository.swift in Sources */,
 				4424F0A22C0001FE001A5BDD /* Closures.swift in Sources */,
 				4424F08D2BFFCA1F001A5BDD /* AppDelegateService.swift in Sources */,
+				448328622C03D5EC00FD7ADC /* ConversionRepositoryImpl.swift in Sources */,
 				4424F03D2BFF8742001A5BDD /* SceneDelegate.swift in Sources */,
 				448328442C0292A700FD7ADC /* UITextField+Styling.swift in Sources */,
 				4483283B2C023D2B00FD7ADC /* UILabel+Styling.swift in Sources */,
+				448328662C03FEA700FD7ADC /* FinanceAPIServiceImpl.swift in Sources */,
+				4483285F2C035FE500FD7ADC /* FinanceAPI.swift in Sources */,
+				4483285A2C035EB300FD7ADC /* HTTPContentType.swift in Sources */,
 				4424F0722BFF8784001A5BDD /* ConverterViewController.swift in Sources */,
-				4424F0862BFF8B3E001A5BDD /* AppConfiguration.swift in Sources */,
+				4483286E2C047E6C00FD7ADC /* HTTPStatusCodes.swift in Sources */,
+				448328682C046B0500FD7ADC /* NetworkingService.swift in Sources */,
+				4424F0862BFF8B3E001A5BDD /* AppConfigurationImpl.swift in Sources */,
 				4424F09C2BFFEF75001A5BDD /* AbstractCoordinator.swift in Sources */,
 				4424F08B2BFFCA08001A5BDD /* SceneDelegateServiceContract.swift in Sources */,
+				4483285C2C035F0600FD7ADC /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

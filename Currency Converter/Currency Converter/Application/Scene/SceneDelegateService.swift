@@ -32,9 +32,12 @@ class SceneDelegateService: SceneDelegateServiceProtocol {
 private extension SceneDelegateService {
     
     func setup() {
-        setupSceneCoordinator()
+        Task {
+            await setupSceneCoordinator()
+        }
     }
     
+    @MainActor
     func setupSceneCoordinator() {
         let navigationController = UINavigationController()
         navigationController.setNavigationBarHidden(false, animated: false)

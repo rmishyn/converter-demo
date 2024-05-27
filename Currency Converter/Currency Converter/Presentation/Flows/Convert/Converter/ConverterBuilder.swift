@@ -8,7 +8,7 @@
 import Foundation
 
 struct ConverterConfiguration {
-    
+    let getConvertedValueUseCase: GetConvertedValue
 }
 
 struct ConverterBuilder {
@@ -18,9 +18,9 @@ struct ConverterBuilder {
     typealias BuilderViewController = ConverterViewController
     typealias BuilderViewModel = ConverterViewModel
     
-    func build(output: BuilderOutput, configuration: BuilderConfiguration) -> BuilderViewController {
+    func build(output: BuilderOutput, configuration: BuilderConfiguration) async -> BuilderViewController {
         let viewModel = BuilderViewModel(output: output, configuration: configuration)
-        let viewController = BuilderViewController(viewModel: viewModel)
+        let viewController = await BuilderViewController(viewModel: viewModel)
         return viewController
     }
 }

@@ -8,10 +8,11 @@
 import UIKit
 import SnapKit
 
+@MainActor
 class ConverterViewController: UIViewController {
     
     struct Constants {
-        static let currencyButtonWidth: CGFloat = 66
+        static let currencyButtonWidth: CGFloat = 55
         static let currencyButtonHeight: CGFloat = 44
     }
     
@@ -21,7 +22,7 @@ class ConverterViewController: UIViewController {
     
     // MARK: UI elements
     
-    private var contentStackView = UIStackView(axis: .vertical, spacing: 20)
+    private var contentStackView = UIStackView(axis: .vertical, spacing: 40)
     private var currenciesStackView = UIStackView(axis: .vertical, spacing: 20)
     private var fromCurrencyStackView = UIStackView(axis: .horizontal, spacing: 10)
     private var fromCurrencyTitleLabel = UILabel()
@@ -29,9 +30,12 @@ class ConverterViewController: UIViewController {
     private var toCurrencyStackView = UIStackView(axis: .horizontal, spacing: 10)
     private var toCurrencyTitleLabel = UILabel()
     private var toCurrencyButton = UIButton(type: .custom)
-    private var amountToExchangeTextField = UITextField()
-    private var amountToReceiveLabel = UILabel()
+    private var valueToConvertTextField = UITextField()
+    private var valueToReceiveLabel = UILabel()
     private var notesLabel = UILabel()
+    private var errorStackView = UIStackView(axis: .vertical, spacing: 10)
+    private var errorTitleLabel = UILabel()
+    private var errorDetailsLabel = UILabel()
     
     // MARK: Lifecycle
     
@@ -51,60 +55,90 @@ class ConverterViewController: UIViewController {
         bind()
         viewModel.viewDidLoad()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        valueToConvertTextField.becomeFirstResponder()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        view.endEditing(true)
+    }
 }
 
 // MARK: - Private methods
 
 private extension ConverterViewController {
     
-    func setupViews() {
-        title = viewModel.screenTitle
-        navigationItem.title = viewModel.screenTitle
-        
+    func setupViewHierarchy() {
         view.addSubview(contentStackView)
         contentStackView.addArrangedSubview(currenciesStackView)
         currenciesStackView.addArrangedSubview(fromCurrencyStackView)
         fromCurrencyStackView.addArrangedSubview(fromCurrencyTitleLabel)
-        fromCurrencyStackView.addArrangedSubview(amountToExchangeTextField)
+        fromCurrencyStackView.addArrangedSubview(valueToConvertTextField)
         fromCurrencyStackView.addArrangedSubview(fromCurrencyButton)
         currenciesStackView.addArrangedSubview(toCurrencyStackView)
         toCurrencyStackView.addArrangedSubview(toCurrencyTitleLabel)
-        toCurrencyStackView.addArrangedSubview(amountToReceiveLabel)
+        toCurrencyStackView.addArrangedSubview(valueToReceiveLabel)
         toCurrencyStackView.addArrangedSubview(toCurrencyButton)
         contentStackView.addArrangedSubview(notesLabel)
-        
+        contentStackView.addArrangedSubview(errorStackView)
+        errorStackView.addArrangedSubview(errorTitleLabel)
+        errorStackView.addArrangedSubview(errorDetailsLabel)
+    }
+    
+    func setupViewConstraints() {
         contentStackView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(20)
             $0.horizontalEdges.equalTo(view.safeAreaLayoutGuide.snp.horizontalEdges).inset(20)
         }
-        
-        view.applyStyle(.screenView)
-        [contentStackView, currenciesStackView, fromCurrencyStackView, toCurrencyStackView].forEach {
-            $0.applyStyle(.transparent)
+        fromCurrencyTitleLabel.snp.makeConstraints {
+            $0.width.equalTo(toCurrencyTitleLabel.snp.width)
         }
-        [fromCurrencyTitleLabel, toCurrencyTitleLabel, amountToReceiveLabel].forEach {
-            $0.applyStyle(.itemTitle)
-        }
-        notesLabel.applyStyle(.explanation)
         [fromCurrencyButton, toCurrencyButton].forEach {
             $0.snp.makeConstraints {
                 $0.width.equalTo(Constants.currencyButtonWidth)
                 $0.height.equalTo(Constants.currencyButtonHeight)
             }
+        }
+    }
+    
+    func setupViews() {
+        title = viewModel.screenTitle
+        navigationItem.title = viewModel.screenTitle
+        
+        setupViewHierarchy()
+        setupViewConstraints()
+        
+        // General styling
+        view.applyStyle(.screenView)
+        [contentStackView, currenciesStackView, fromCurrencyStackView, toCurrencyStackView, errorStackView].forEach {
+            $0.applyStyle(.transparent)
+        }
+        [fromCurrencyTitleLabel, toCurrencyTitleLabel].forEach {
+            $0.applyStyle(.itemTitle)
+            $0.setContentCompressionResistancePriority(.required, for: .horizontal)
+            $0.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        }
+        valueToReceiveLabel.applyStyle(.itemTitle)
+        notesLabel.applyStyle(.explanation)
+        errorTitleLabel.applyStyle(.errorTitle)
+        errorDetailsLabel.applyStyle(.errorDetails)
+        [fromCurrencyButton, toCurrencyButton].forEach {
             $0.applyStyle(.selectCurrency)
         }
-        amountToExchangeTextField.applyStyle(.numeric)
+        valueToConvertTextField.applyStyle(.numeric)
         
-        fromCurrencyTitleLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
-        fromCurrencyTitleLabel.setContentHuggingPriority(.required, for: .horizontal)
-        amountToReceiveLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
-        amountToReceiveLabel.textAlignment = .right
+        valueToReceiveLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
+        //valueToReceiveLabel.textAlignment = .right
         currenciesStackView.distribution = .fillEqually
         
         fromCurrencyTitleLabel.text = viewModel.fromCurrencyTitle
         toCurrencyTitleLabel.text = viewModel.toCurrencyTitle
-        amountToExchangeTextField.placeholder = viewModel.amountToExchangePlaceholder
+        valueToConvertTextField.placeholder = viewModel.valueToConvertPlaceholder
         notesLabel.text = viewModel.notes
+        errorTitleLabel.text = viewModel.errorTitle
     }
     
     func setupBehaviours() {
@@ -112,8 +146,8 @@ private extension ConverterViewController {
     }
     
     func bind() {
-        viewModel.fromCurrency.observe(on: self) { [weak self] in self?.updateFromCurrency($0) }
-        viewModel.toCurrency.observe(on: self) { [weak self] in self?.updateToCurrency($0) }
+        viewModel.fromCurrency.observe(on: self) { [weak self] in self?.updateFromCurrency($0?.id) }
+        viewModel.toCurrency.observe(on: self) { [weak self] in self?.updateToCurrency($0?.id) }
         viewModel.convertedValue.observe(on: self) { [ weak self] in self?.updateConvertedValue($0)}
         viewModel.error.observe(on: self) { [weak self] in self?.showError($0?.localizedDescription) }
     }
@@ -126,14 +160,17 @@ private extension ConverterViewController {
         toCurrencyButton.setTitle(currency ?? "-", for: .normal)
     }
     
-    func updateConvertedValue(_ value: Double) {
-        let formatter = NumberFormatter()
-        formatter.minimumFractionDigits = 2
-        formatter.maximumFractionDigits = 2
-        amountToReceiveLabel.text = formatter.string(from: NSNumber(value: value))
+    func updateConvertedValue(_ value: String?) {
+        valueToReceiveLabel.text = value ?? "---"
     }
     
     func showError(_ error: String?) {
-        
+        if let error = error {
+            errorStackView.isHidden = false
+            errorDetailsLabel.text = error
+        } else {
+            errorStackView.isHidden = true
+            errorDetailsLabel.text = ""
+        }
     }
 }
