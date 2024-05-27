@@ -59,11 +59,13 @@ class ConverterViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         valueToConvertTextField.becomeFirstResponder()
+        viewModel.viewWillAppear()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         view.endEditing(true)
+        viewModel.viewWillDisappear()
     }
 }
 

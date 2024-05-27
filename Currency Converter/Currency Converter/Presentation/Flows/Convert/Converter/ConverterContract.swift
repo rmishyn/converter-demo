@@ -11,6 +11,8 @@ typealias ConverterViewModelProtocol = ConverterViewModelInput & ConverterViewMo
 
 protocol ConverterViewModelInput: AnyObject {
     func viewDidLoad()
+    func viewWillAppear()
+    func viewWillDisappear()
     func didChangeOriginalValue(to value: Double)
     func shouldChangeFromCurrency()
     func shouldChangeToCurrency()
