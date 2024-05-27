@@ -39,8 +39,15 @@ private extension SceneDelegateService {
     
     @MainActor
     func setupSceneCoordinator() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor.accent
+        
         let navigationController = UINavigationController()
         navigationController.setNavigationBarHidden(false, animated: false)
+        navigationController.navigationBar.standardAppearance = appearance
+        navigationController.navigationBar.scrollEdgeAppearance = appearance
+        
         window.rootViewController = navigationController
         
         let coordinatorConfiguration = CoordinatorConfiguration<SceneCoordinatorOutput>(navigationController: navigationController, output: self)

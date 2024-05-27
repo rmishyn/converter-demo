@@ -66,6 +66,8 @@
 		448328782C04930C00FD7ADC /* NetworkingRequesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448328772C04930C00FD7ADC /* NetworkingRequesting.swift */; };
 		4483287A2C04CE1200FD7ADC /* GetSupportedCurrencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448328792C04CE1200FD7ADC /* GetSupportedCurrencies.swift */; };
 		4483287C2C04D01500FD7ADC /* CurrenciesRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4483287B2C04D01500FD7ADC /* CurrenciesRepositoryImpl.swift */; };
+		44CE15B12C051CFB003B7B94 /* DecimalTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CE15B02C051CFB003B7B94 /* DecimalTextField.swift */; };
+		44CE15B32C052D9C003B7B94 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CE15B22C052D9C003B7B94 /* UIDevice+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +148,8 @@
 		448328772C04930C00FD7ADC /* NetworkingRequesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingRequesting.swift; sourceTree = "<group>"; };
 		448328792C04CE1200FD7ADC /* GetSupportedCurrencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSupportedCurrencies.swift; sourceTree = "<group>"; };
 		4483287B2C04D01500FD7ADC /* CurrenciesRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesRepositoryImpl.swift; sourceTree = "<group>"; };
+		44CE15B02C051CFB003B7B94 /* DecimalTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalTextField.swift; sourceTree = "<group>"; };
+		44CE15B22C052D9C003B7B94 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +246,7 @@
 		4424F06F2BFF8784001A5BDD /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				44CE15AF2C051CE1003B7B94 /* CustomComponents */,
 				4424F0952BFFEBEA001A5BDD /* Flows */,
 				448328332C02398D00FD7ADC /* Styling */,
 			);
@@ -301,9 +306,10 @@
 		4424F0832BFF8AF1001A5BDD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				4424F0A92C00E5C1001A5BDD /* String+Extension.swift */,
-				448328312C02246B00FD7ADC /* UIStackView+Extension.swift */,
 				4483286F2C04820600FD7ADC /* NSError+Extension.swift */,
+				4424F0A92C00E5C1001A5BDD /* String+Extension.swift */,
+				44CE15B22C052D9C003B7B94 /* UIDevice+Extension.swift */,
+				448328312C02246B00FD7ADC /* UIStackView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -506,6 +512,14 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
+		44CE15AF2C051CE1003B7B94 /* CustomComponents */ = {
+			isa = PBXGroup;
+			children = (
+				44CE15B02C051CFB003B7B94 /* DecimalTextField.swift */,
+			);
+			path = CustomComponents;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -652,6 +666,7 @@
 				4483287A2C04CE1200FD7ADC /* GetSupportedCurrencies.swift in Sources */,
 				448328482C032F1300FD7ADC /* CurrencyAmount.swift in Sources */,
 				4424F0942BFFD251001A5BDD /* AppConfiguration.swift in Sources */,
+				44CE15B12C051CFB003B7B94 /* DecimalTextField.swift in Sources */,
 				4424F0712BFF8784001A5BDD /* ConverterContract.swift in Sources */,
 				448328782C04930C00FD7ADC /* NetworkingRequesting.swift in Sources */,
 				4424F0A42C0073D7001A5BDD /* SceneCoordinator.swift in Sources */,
@@ -660,6 +675,7 @@
 				448328722C04861F00FD7ADC /* CCError.swift in Sources */,
 				4483286C2C04714C00FD7ADC /* URLRequest+curl.swift in Sources */,
 				4483284F2C03318D00FD7ADC /* GetConvertedValue.swift in Sources */,
+				44CE15B32C052D9C003B7B94 /* UIDevice+Extension.swift in Sources */,
 				4424F09F2C00017D001A5BDD /* Weak.swift in Sources */,
 				448328742C048DC200FD7ADC /* NetworkingResponseProcessing.swift in Sources */,
 				448328352C0239B400FD7ADC /* UIView+Styling.swift in Sources */,

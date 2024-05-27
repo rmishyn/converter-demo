@@ -12,7 +12,7 @@ class ConverterViewModel: ConverterViewModelProtocol {
     // MARK: Constants
     
     private struct Constants {
-        static let delayedRequestTimeInterval: TimeInterval = 1
+        static let delayedRequestTimeInterval: TimeInterval = 0.5
         static let repetitiveRequestTimeInterval: TimeInterval = 10
     }
     
@@ -64,9 +64,6 @@ extension ConverterViewModel {
         Task {
             self.supportedCurrencies.value = await getSupportedCurrenciesUseCase.getSupportedCurrencies()
         }
-        #if DEBUG
-        lastValueToConvert = 1000
-        #endif
     }
     
     func viewWillAppear() {

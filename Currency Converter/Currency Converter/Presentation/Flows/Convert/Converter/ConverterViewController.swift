@@ -21,6 +21,11 @@ class ConverterViewController: UIViewController {
     // MARK: Properties
     
     private let viewModel: ConverterViewModelProtocol
+    private let numberFormatter: NumberFormatter = {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.minimumFractionDigits = 2
+        return numberFormatter
+    }()
     
     // MARK: UI elements
     
@@ -33,7 +38,7 @@ class ConverterViewController: UIViewController {
     private let toCurrencyTitleLabel = UILabel()
     private let toCurrencyButton = UIButton(type: .custom)
     private let valueToConvertContainerView = UIView()
-    private let valueToConvertTextField = UITextField()
+    private let valueToConvertTextField = DecimalTextField()
     private let valueToConvertUnderlineView = UIView()
     private let valueToReceiveContainerView = UIView()
     private let valueToReceiveLabel = UILabel()
@@ -115,6 +120,12 @@ private extension ConverterViewController {
             break
         }
     }
+    
+    @objc func onValueToConvertTextFieldValueChanged(_ sender: UITextField) {
+        let text = (sender.text ?? "").replacingOccurrences(of: numberFormatter.decimalSeparator, with: ".")
+        print("value to convert is changed to \(text)")
+        viewModel.didChangeOriginalValue(to: text.doubleValue ?? 0)
+    }
 }
 
 // MARK: - Private methods
@@ -146,8 +157,9 @@ private extension ConverterViewController {
     
     func setupViewConstraints() {
         contentStackView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(20)
-            $0.horizontalEdges.equalTo(view.safeAreaLayoutGuide.snp.horizontalEdges).inset(20)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(40)
+            $0.width.equalToSuperview().multipliedBy(UIDevice.current.isIPad ? 0.6 : 0.9)
+            $0.centerX.equalToSuperview()
         }
         fromCurrencyTitleLabel.snp.makeConstraints {
             $0.width.equalTo(toCurrencyTitleLabel.snp.width)
@@ -215,6 +227,7 @@ private extension ConverterViewController {
         }
         fromCurrencyButton.addTarget(self, action: #selector(onFromCurrencyTouchUpInside(_:)), for: .touchUpInside)
         toCurrencyButton.addTarget(self, action: #selector(onToCurrencyTouchUpInside(_:)), for: .touchUpInside)
+        valueToConvertTextField.addTarget(self, action: #selector(onValueToConvertTextFieldValueChanged(_:)), for: .editingChanged)
         valueToConvertTextField.applyStyle(.numeric)
         valueToReceiveLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         activityIndicator.hidesWhenStopped = true
@@ -266,7 +279,17 @@ private extension ConverterViewController {
     }
     
     func updateConvertedValue(_ value: String?) {
-        valueToReceiveLabel.text = value ?? "---"
+        guard let value = value else {
+            valueToReceiveLabel.text = "---"
+            return
+        }
+        if let doubleValue = value.doubleValue {
+            // change format using decimal separator for current locale
+            valueToReceiveLabel.text = numberFormatter.string(from: NSNumber(floatLiteral: doubleValue))
+        } else {
+            valueToReceiveLabel.text = value
+        }
+        
     }
     
     func showError(_ error: String?) {
