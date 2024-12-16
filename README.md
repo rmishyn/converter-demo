@@ -3,7 +3,7 @@
 iOS Project implemented with Clean Layered Architecture and MVVM.
 List of used technologies/frameworks:
 - Architectural pattern: MVVM
-- Software design philosophy: Clean Architecture
+- Software design: Clean Architecture
 - Programming language: Swift
 - UI framework: UIKit + SnapKit
 - Localization

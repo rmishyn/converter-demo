@@ -33,8 +33,9 @@
 		4424F0A22C0001FE001A5BDD /* Closures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4424F0A12C0001FE001A5BDD /* Closures.swift */; };
 		4424F0A42C0073D7001A5BDD /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4424F0A32C0073D7001A5BDD /* SceneCoordinator.swift */; };
 		4424F0A62C00ADF8001A5BDD /* ConvertCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4424F0A52C00ADF8001A5BDD /* ConvertCoordinator.swift */; };
-		4424F0A82C00DB6F001A5BDD /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4424F0A72C00DB6F001A5BDD /* Observable.swift */; };
 		4424F0AA2C00E5C1001A5BDD /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4424F0A92C00E5C1001A5BDD /* String+Extension.swift */; };
+		44583E6D2D105FDC00D17041 /* Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44583E6C2D105FD600D17041 /* Combine.swift */; };
+		44583E6F2D10608E00D17041 /* Publisher+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44583E6E2D10608500D17041 /* Publisher+Extension.swift */; };
 		448328322C02246B00FD7ADC /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448328312C02246B00FD7ADC /* UIStackView+Extension.swift */; };
 		448328352C0239B400FD7ADC /* UIView+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448328342C0239B400FD7ADC /* UIView+Styling.swift */; };
 		448328372C023A4400FD7ADC /* Stylable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448328362C023A4400FD7ADC /* Stylable.swift */; };
@@ -115,8 +116,9 @@
 		4424F0A12C0001FE001A5BDD /* Closures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Closures.swift; sourceTree = "<group>"; };
 		4424F0A32C0073D7001A5BDD /* SceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
 		4424F0A52C00ADF8001A5BDD /* ConvertCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertCoordinator.swift; sourceTree = "<group>"; };
-		4424F0A72C00DB6F001A5BDD /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		4424F0A92C00E5C1001A5BDD /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		44583E6C2D105FD600D17041 /* Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Combine.swift; sourceTree = "<group>"; };
+		44583E6E2D10608500D17041 /* Publisher+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Extension.swift"; sourceTree = "<group>"; };
 		448328312C02246B00FD7ADC /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
 		448328342C0239B400FD7ADC /* UIView+Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Styling.swift"; sourceTree = "<group>"; };
 		448328362C023A4400FD7ADC /* Stylable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stylable.swift; sourceTree = "<group>"; };
@@ -290,7 +292,6 @@
 			isa = PBXGroup;
 			children = (
 				4424F0982BFFECC2001A5BDD /* Coordinator */,
-				4424F0A72C00DB6F001A5BDD /* Observable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -310,6 +311,7 @@
 				4424F0A92C00E5C1001A5BDD /* String+Extension.swift */,
 				44CE15B22C052D9C003B7B94 /* UIDevice+Extension.swift */,
 				448328312C02246B00FD7ADC /* UIStackView+Extension.swift */,
+				44583E6E2D10608500D17041 /* Publisher+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -406,6 +408,7 @@
 			isa = PBXGroup;
 			children = (
 				4424F0A12C0001FE001A5BDD /* Closures.swift */,
+				44583E6C2D105FD600D17041 /* Combine.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -662,7 +665,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4424F0A82C00DB6F001A5BDD /* Observable.swift in Sources */,
 				4483287A2C04CE1200FD7ADC /* GetSupportedCurrencies.swift in Sources */,
 				448328482C032F1300FD7ADC /* CurrencyAmount.swift in Sources */,
 				4424F0942BFFD251001A5BDD /* AppConfiguration.swift in Sources */,
@@ -682,6 +684,7 @@
 				4424F09A2BFFEF62001A5BDD /* Coordinator.swift in Sources */,
 				4424F0702BFF8784001A5BDD /* ConverterBuilder.swift in Sources */,
 				4424F03B2BFF8742001A5BDD /* AppDelegate.swift in Sources */,
+				44583E6D2D105FDC00D17041 /* Combine.swift in Sources */,
 				448328642C03FE9A00FD7ADC /* FinanceAPIService.swift in Sources */,
 				4483286A2C046C2A00FD7ADC /* NetworkingServiceImpl.swift in Sources */,
 				448328582C035E7E00FD7ADC /* HTTPHeaderField.swift in Sources */,
@@ -695,6 +698,7 @@
 				448328372C023A4400FD7ADC /* Stylable.swift in Sources */,
 				4424F08F2BFFCA2A001A5BDD /* SceneDelegateService.swift in Sources */,
 				4424F0732BFF8784001A5BDD /* ConverterViewModel.swift in Sources */,
+				44583E6F2D10608E00D17041 /* Publisher+Extension.swift in Sources */,
 				4483283D2C023E9100FD7ADC /* UIButton+Styling.swift in Sources */,
 				448328552C03437400FD7ADC /* ConversionRepository.swift in Sources */,
 				4424F0A22C0001FE001A5BDD /* Closures.swift in Sources */,
@@ -895,11 +899,12 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rmishyn.currency-converter";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -923,11 +928,12 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rmishyn.currency-converter";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

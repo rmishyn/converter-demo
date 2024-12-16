@@ -5,6 +5,7 @@
 //  Created by Ruslan Mishyn on 23.05.2024.
 //
 
+import Combine
 import Foundation
 
 typealias ConverterViewModelProtocol = ConverterViewModelInput & ConverterViewModelOutput
@@ -25,12 +26,16 @@ protocol ConverterViewModelOutput: AnyObject {
     var toCurrencyTitle: String { get }
     var valueToConvertPlaceholder: String { get }
     var notes: String { get }
-    var fromCurrency: Observable<Currency?> {get}
-    var toCurrency: Observable<Currency?> {get}
-    var convertedValue: Observable<String?> {get}
-    var error: Observable<Error?> {get}
-    var supportedCurrencies: Observable<[Currency]> {get}
-    var isConversionActive: Observable<Bool> {get}
+    
+    var fromCurrency: Currency? { get }
+    var fromCurrencyPublisher: AnyRelay<Currency?> { get }
+    var toCurrency: Currency? { get }
+    var toCurrencyPublisher: AnyRelay<Currency?> { get }
+    var convertedValuePublisher: AnyRelay<String?> { get }
+    var errorPublisher: AnyRelay<Error?> { get }
+    var supportedCurrencies: [Currency] { get }
+    var supportedCurrenciesPublisher: AnyRelay<[Currency]> { get }
+    var isConversionActivePublisher: AnyRelay<Bool> { get }
 }
 
 protocol ConverterOutput: AnyObject {

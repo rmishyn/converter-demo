@@ -26,6 +26,7 @@ class ConverterViewController: UIViewController {
         numberFormatter.minimumFractionDigits = 2
         return numberFormatter
     }()
+    private var bag = CancelBag()
     
     // MARK: UI elements
     
@@ -88,14 +89,14 @@ private extension ConverterViewController {
     
     @objc func onFromCurrencyTouchUpInside(_ sender: UIButton) {
         hideKeyboard()
-        selectInPicker(currency: viewModel.fromCurrency.value)
+        selectInPicker(currency: viewModel.fromCurrency)
         invisibleCurrencyTextField.tag = Constants.currencyPickerFromCurrencyTag
         invisibleCurrencyTextField.becomeFirstResponder()
     }
     
     @objc func onToCurrencyTouchUpInside(_ sender: UIButton) {
         hideKeyboard()
-        selectInPicker(currency: viewModel.toCurrency.value)
+        selectInPicker(currency: viewModel.toCurrency)
         invisibleCurrencyTextField.tag = Constants.currencyPickerToCurrencyTag
         invisibleCurrencyTextField.becomeFirstResponder()
     }
@@ -108,7 +109,7 @@ private extension ConverterViewController {
         invisibleCurrencyTextField.resignFirstResponder()
         guard let picker = invisibleCurrencyTextField.inputView as? UIPickerView else { return }
         let idx = picker.selectedRow(inComponent: 0)
-        let supportedCurrencies = viewModel.supportedCurrencies.value
+        let supportedCurrencies = viewModel.supportedCurrencies
         guard idx < supportedCurrencies.count else { return }
         let currency = supportedCurrencies[idx]
         switch invisibleCurrencyTextField.tag {
@@ -258,16 +259,35 @@ private extension ConverterViewController {
     }
     
     func bind() {
-        viewModel.fromCurrency.observe(on: self) { [weak self] in self?.updateFromCurrency($0?.id) }
-        viewModel.toCurrency.observe(on: self) { [weak self] in self?.updateToCurrency($0?.id) }
-        viewModel.convertedValue.observe(on: self) { [ weak self] in self?.updateConvertedValue($0)}
-        viewModel.error.observe(on: self) { [weak self] in self?.showError($0?.localizedDescription) }
-        viewModel.supportedCurrencies.observe(on: self) {[weak self] _ in
-            Task { await self?.updateSupportedCurrencies() }
-        }
-        viewModel.isConversionActive.observe(on: self) { [weak self] isActive in
-            Task { await self?.updateRequestActivity(isActive: isActive) }
-        }
+        bag.removeAll()
+        viewModel.fromCurrencyPublisher
+            .onMain()
+            .sink { [weak self] in self?.updateFromCurrency($0?.id) }
+            .store(in: &bag)
+        viewModel.toCurrencyPublisher
+            .onMain()
+            .sink { [weak self] in self?.updateToCurrency($0?.id) }
+            .store(in: &bag)
+        viewModel.convertedValuePublisher
+            .onMain()
+            .sink { [weak self] in self?.updateConvertedValue($0) }
+            .store(in: &bag)
+        viewModel.errorPublisher
+            .onMain()
+            .sink { [weak self] in self?.showError($0?.localizedDescription) }
+            .store(in: &bag)
+        viewModel.supportedCurrenciesPublisher
+            .onMain()
+            .sink { [weak self] _ in
+                Task { await self?.updateSupportedCurrencies() }
+            }
+            .store(in: &bag)
+        viewModel.isConversionActivePublisher
+            .onMain()
+            .sink { [weak self] isActive in
+                Task { await self?.updateRequestActivity(isActive: isActive) }
+            }
+            .store(in: &bag)
     }
     
     func updateFromCurrency(_ currency: String?) {
@@ -329,7 +349,7 @@ private extension ConverterViewController {
     func selectInPicker(currency: Currency?) {
         guard let currency = currency,
               let picker = invisibleCurrencyTextField.inputView as? UIPickerView,
-              let idx = viewModel.supportedCurrencies.value.firstIndex(of: currency) else { return }
+              let idx = viewModel.supportedCurrencies.firstIndex(of: currency) else { return }
         picker.selectRow(idx, inComponent: 0, animated: false)
     }
 }
@@ -341,10 +361,10 @@ extension ConverterViewController: UIPickerViewDelegate, UIPickerViewDataSource 
     func numberOfComponents(in pickerView: UIPickerView) -> Int { 1 }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        viewModel.supportedCurrencies.value.count
+        viewModel.supportedCurrencies.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        viewModel.supportedCurrencies.value[row].id
+        viewModel.supportedCurrencies[row].id
     }
 }

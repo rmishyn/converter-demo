@@ -5,6 +5,7 @@
 //  Created by Ruslan Mishyn on 23.05.2024.
 //
 
+import Combine
 import Foundation
 
 class ConverterViewModel: ConverterViewModelProtocol {
@@ -27,6 +28,10 @@ class ConverterViewModel: ConverterViewModelProtocol {
     }
     private var delayedRequestTimer: Timer?
     
+    @Published private var convertedValue: String?
+    @Published private var error: Error?
+    @Published private var isConversionActive: Bool = false
+    
     // MARK: UseCases
     
     private let getExchangedAmountUseCase: GetConvertedValue
@@ -40,12 +45,14 @@ class ConverterViewModel: ConverterViewModelProtocol {
     let toCurrencyTitle = "You will receive:".localized
     let valueToConvertPlaceholder = "Enter value".localized
     let notes = "exchange notes".localized
-    var fromCurrency: Observable<Currency?> = Observable(nil)
-    var toCurrency: Observable<Currency?> = Observable(nil)
-    var convertedValue: Observable<String?> = Observable(nil)
-    var error: Observable<Error?> = Observable(nil)
-    var supportedCurrencies: Observable<[Currency]> = Observable([])
-    var isConversionActive: Observable<Bool> = Observable(false)
+    
+    @Published private(set) var fromCurrency: Currency? {
+        didSet { updateConversionResult() }
+    }
+    @Published private(set) var toCurrency: Currency? {
+        didSet { updateConversionResult() }
+    }
+    @Published private(set) var supportedCurrencies: [Currency] = []
     
     // MARK: Lifecycle
     
@@ -56,13 +63,25 @@ class ConverterViewModel: ConverterViewModelProtocol {
     }
 }
 
+// MARK: - ConverterViewModelOutput
+
+extension ConverterViewModel {
+    
+    var fromCurrencyPublisher: AnyRelay<Currency?> { $fromCurrency.eraseToAnyPublisher() }
+    var toCurrencyPublisher: AnyRelay<Currency?> { $toCurrency.eraseToAnyPublisher() }
+    var convertedValuePublisher: AnyRelay<String?> { $convertedValue.eraseToAnyPublisher() }
+    var errorPublisher: AnyRelay<Error?> { $error.eraseToAnyPublisher() }
+    var supportedCurrenciesPublisher: AnyRelay<[Currency]> { $supportedCurrencies.eraseToAnyPublisher() }
+    var isConversionActivePublisher: AnyRelay<Bool> { $isConversionActive.eraseToAnyPublisher() }
+}
+
 // MARK: - ConverterViewModelInput
 
 extension ConverterViewModel {
     
     func viewDidLoad() {
         Task {
-            self.supportedCurrencies.value = await getSupportedCurrenciesUseCase.getSupportedCurrencies()
+            self.supportedCurrencies = await getSupportedCurrenciesUseCase.getSupportedCurrencies()
         }
     }
     
@@ -79,13 +98,11 @@ extension ConverterViewModel {
     }
     
     func didChangeFromCurrency(to currency: Currency) {
-        fromCurrency.value = currency
-        updateConversionResult()
+        fromCurrency = currency
     }
     
     func didChangeToCurrency(to currency: Currency) {
-        toCurrency.value = currency
-        updateConversionResult()
+        toCurrency = currency
     }
 }
 
@@ -101,15 +118,15 @@ private extension ConverterViewModel {
     }
     
     func updateConversionResultDelayed() {
-        guard let fromCurrency = fromCurrency.value, let toCurrency = toCurrency.value, fromCurrency != toCurrency else {
-            convertedValue.value = nil
+        guard let fromCurrency, let toCurrency = toCurrency, fromCurrency != toCurrency else {
+            convertedValue = nil
             return
         }
         guard let amountToConvert = lastValueToConvert else {
-            convertedValue.value = "0"
+            convertedValue = "0"
             return
         }
-        isConversionActive.value = true
+        isConversionActive = true
         Task {
             let requestValue = GetConvertedValueRequestValue(currencyToConvert: fromCurrency, valueToConvert: amountToConvert, currencyToReceive: toCurrency)
             let response = await getExchangedAmountUseCase.getConvertedValue(requestValue: requestValue)
@@ -121,15 +138,15 @@ private extension ConverterViewModel {
     @MainActor
     func handleConvertedValueResponse(_ response: Result<CurrencyAmount, Error>) {
         defer {
-            isConversionActive.value = false
+            isConversionActive = false
         }
         switch response {
         case .success(let currencyAmount):
-            self.convertedValue.value = currencyAmount.amount
-            self.error.value = nil
+            self.convertedValue = currencyAmount.amount
+            self.error = nil
         case .failure(let error):
-            self.convertedValue.value = nil
-            self.error.value = error
+            self.convertedValue = nil
+            self.error = error
         }
         updateConversionResult(delayInterval: ConverterViewModel.Constants.repetitiveRequestTimeInterval)
     }
